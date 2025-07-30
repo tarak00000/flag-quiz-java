@@ -62,9 +62,8 @@ http://localhost:8080
 3. **Render設定**:
    ```
    Name: flag-quiz-java
-   Environment: Java
-   Build Command: mvn clean package -DskipTests
-   Start Command: java -Dserver.port=$PORT -jar target/flag-quiz-jv-0.0.1-SNAPSHOT.jar
+   Environment: Docker
+   Dockerfile Path: ./Dockerfile
    ```
 
 4. **環境変数設定**:

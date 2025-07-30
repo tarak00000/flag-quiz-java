@@ -1,17 +1,11 @@
 services:
   - type: web
     name: flag-quiz-java
-    env: java
+    env: docker
     plan: starter
-    buildCommand: |
-      java -version
-      mvn -version
-      mvn clean package -DskipTests
-    startCommand: java -Dserver.port=$PORT -jar target/flag-quiz-jv-0.0.1-SNAPSHOT.jar
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: GEMINI_API_KEY
         sync: false
       - key: SPRING_PROFILES_ACTIVE
         value: production
-      - key: JAVA_TOOL_OPTIONS
-        value: "-Xmx512m"
