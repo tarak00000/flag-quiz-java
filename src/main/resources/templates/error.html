@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エラー - 国旗クイズゲーム</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>❌ エラーが発生しました</h1>
+        
+        <div class="message error">
+            <p>申し訳ございません。エラーが発生しました。</p>
+            <p th:if="${statusCode}">ステータスコード: <span th:text="${statusCode}"></span></p>
+            <p th:if="${errorMessage}">エラーメッセージ: <span th:text="${errorMessage}"></span></p>
+            <p th:if="${exceptionMessage}">詳細: <span th:text="${exceptionMessage}"></span></p>
+        </div>
+        
+        <div class="form-section">
+            <a href="/" class="btn btn-primary">ホームに戻る</a>
+        </div>
+    </div>
+</body>
+</html>

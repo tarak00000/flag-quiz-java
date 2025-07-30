@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>国旗クイズゲーム</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <script th:src="@{/script.js}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🏴 国旗クイズゲーム 🌍</h1>
+        
+        <!-- メッセージ表示 -->
+        <div th:if="${message}" class="message success" th:text="${message}"></div>
+        <div th:if="${error}" class="message error" th:text="${error}"></div>
+        <div th:if="${success}" class="message success" th:text="${success}"></div>
+        
+        <!-- 新しいゲーム開始 -->
+        <div class="new-game-section">
+            <form action="/new_game" method="post">
+                <button type="submit" class="btn btn-primary">新しいゲーム開始</button>
+            </form>
+        </div>
+        
+        <!-- ゲーム画面 -->
+        <div th:if="${gameState}" class="game-area">
+            <!-- 左列 -->
+            <div class="left-column">
+                <!-- 国旗表示 -->
+                <div class="flag-section">
+                    <img th:src="${gameState.countryFlag}" alt="国旗" class="flag-image">
+                </div>
+                
+                <!-- ゲーム情報 -->
+                <div class="game-info">
+                    <p>残り回答: <span th:text="${gameState.answersLeft}"></span>/2</p>
+                    <p>残り質問: <span th:text="${gameState.questionsLeft}"></span>/10</p>
+                    <p>使用ヒント: <span th:text="${gameState.hintsLeft != null ? gameState.hintsLeft : 3}"></span>/3</p>
+                </div>
+                
+                <!-- ヒントセクション -->
+            <div class="form-section">
+                <h3>💡 ヒント</h3>
+                <div class="hint-buttons">
+                    <form action="/get_hint" method="post" style="display: inline;">
+                        <input type="hidden" name="hintType" value="主食">
+                        <button type="submit" class="btn btn-hint" 
+                                th:disabled="${(gameState.hintsUsed != null and gameState.hintsUsed.contains('主食')) or gameState.hintsLeft <= 0}">
+                            🍚 主食
+                        </button>
+                    </form>
+                    <form action="/get_hint" method="post" style="display: inline;">
+                        <input type="hidden" name="hintType" value="面積">
+                        <button type="submit" class="btn btn-hint"
+                                th:disabled="${(gameState.hintsUsed != null and gameState.hintsUsed.contains('面積')) or gameState.hintsLeft <= 0}">
+                            📏 面積
+                        </button>
+                    </form>
+                    <form action="/get_hint" method="post" style="display: inline;">
+                        <input type="hidden" name="hintType" value="言語">
+                        <button type="submit" class="btn btn-hint"
+                                th:disabled="${(gameState.hintsUsed != null and gameState.hintsUsed.contains('言語')) or gameState.hintsLeft <= 0}">
+                            🗣️ 言語
+                        </button>
+                    </form>
+                </div>
+                <div th:if="${hint}" class="hint-display">
+                    <strong th:text="${hintType}"></strong>: <span th:text="${hint}"></span>
+                </div>
+            </div>
+            </div>
+            
+            <!-- 右列 -->
+            <div class="right-column">
+                <!-- 質問セクション -->
+                <div class="form-section">
+                    <h3>❓ 質問 (Yes/No形式)</h3>
+                    <form action="/ask_question" method="post">
+                        <input type="text" name="question" placeholder="この国はアジアにありますか？" 
+                               class="input-field" th:disabled="${gameState.questionsLeft <= 0}">
+                        <button type="submit" class="btn btn-secondary" 
+                                th:disabled="${gameState.questionsLeft <= 0}">質問する</button>
+                    </form>
+                    <div th:if="${answer}" class="answer-display">
+                        <p><strong>Q:</strong> <span th:text="${lastQuestion}"></span></p>
+                        <p><strong>A:</strong> <span th:text="${answer}"></span></p>
+                    </div>
+                    
+                    <!-- 質問履歴 -->
+                    <div th:if="${gameState.gameLog != null and !gameState.gameLog.isEmpty()}" class="question-log">
+                        <h4>質問履歴:</h4>
+                        <div th:each="log : ${gameState.gameLog}" th:text="${log}" class="log-entry"></div>
+                    </div>
+                </div>
+                
+                <!-- 回答セクション -->
+                <div class="form-section">
+                    <h3>🎯 回答</h3>
+                    <form action="/submit_answer" method="post">
+                        <input type="text" name="answer" placeholder="国名を入力してください（日本語OK）" 
+                               class="input-field" th:disabled="${gameState.answersLeft <= 0}">
+                        <button type="submit" class="btn btn-primary" 
+                                th:disabled="${gameState.answersLeft <= 0}">回答する</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ゲーム未開始メッセージ -->
+        <div th:unless="${gameState}" class="start-message">
+            <p>新しいゲームを開始してください！</p>
+            <p>国旗を見て、質問やヒントを使って国名を当ててください。</p>
+        </div>
+    </div>
+</body>
+</html>
