@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: flag-quiz-java
+    env: java
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -Dserver.port=$PORT -jar target/flag-quiz-jv-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: SPRING_PROFILES_ACTIVE
+        value: production

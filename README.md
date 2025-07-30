@@ -48,6 +48,38 @@ mvn spring-boot:run
 http://localhost:8080
 ```
 
+## 🌐 デプロイ
+
+### Renderデプロイ
+
+1. **Renderアカウント作成**: [render.com](https://render.com)でアカウント作成
+
+2. **新しいWebサービス作成**:
+   - "New" → "Web Service"
+   - GitHubリポジトリを接続
+   - 以下の設定を入力：
+
+3. **Render設定**:
+   ```
+   Name: flag-quiz-java
+   Environment: Java
+   Build Command: mvn clean package -DskipTests
+   Start Command: java -Dserver.port=$PORT -jar target/flag-quiz-jv-0.0.1-SNAPSHOT.jar
+   ```
+
+4. **環境変数設定**:
+   ```
+   GEMINI_API_KEY = your-gemini-api-key-here
+   SPRING_PROFILES_ACTIVE = production
+   ```
+
+5. **デプロイ実行**: "Create Web Service"をクリック
+
+### ライブデモ
+- 🔗 **デモURL**: https://flag-quiz-java.onrender.com *(デプロイ後に更新)*
+
+```
+
 ## 🎮 ゲームルール
 
 ### 基本ルール
