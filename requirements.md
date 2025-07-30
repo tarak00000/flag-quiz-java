@@ -1,66 +1,66 @@
-# Flag Quiz Game - Comprehensive Requirements Document
+# 国旗クイズゲーム (Java版) - 要件定義書
 
-## 1. Project Overview
+## 1. プロジェクト概要
 
-### 1.1 Project Description
-The Flag Quiz Game is an interactive web-based application built with Java Spring Boot that challenges users to identify countries based on their flags. The application leverages Google's Gemini AI API to provide intelligent question answering, hint generation, and answer validation, creating an engaging educational experience.
+### 1.1 プロジェクト説明
+国旗クイズゲームは、Java Spring Bootで構築されたインタラクティブなWebベースアプリケーションです。ユーザーは国旗を見て国名を当てるゲームを楽しめます。Google Gemini AI APIを活用して、インテリジェントな質問応答、ヒント生成、回答検証機能を提供し、魅力的な教育体験を創出します。
 
-### 1.2 Project Goals
-- Create an educational and entertaining flag identification game
-- Demonstrate integration with Google Gemini AI API
-- Provide a responsive web interface using modern web technologies
-- Implement session-based game state management
-- Support both Japanese and English language inputs/outputs
+### 1.2 プロジェクト目標
+- 教育的で楽しい国旗識別ゲームの作成
+- Google Gemini AI APIとの統合実証
+- モダンWeb技術を使用したレスポンシブWebインターフェース提供
+- セッションベースのゲーム状態管理実装
+- 日本語・英語両言語での入出力サポート
 
-### 1.3 Target Audience
-- Students learning world geography
-- Educational institutions
-- General users interested in world knowledge
-- Web developers learning AI API integration
+### 1.3 対象ユーザー
+- 世界地理を学習する学生
+- 教育機関
+- 世界の知識に興味のある一般ユーザー
+- AI API統合を学習するWeb開発者
 
-## 2. Game Rules and Mechanics
+## 2. ゲームルールと仕組み
 
-### 2.1 Core Game Rules
-- **Objective**: Identify the country name by looking at its flag
-- **Answer Attempts**: Maximum 2 incorrect answers allowed
-- **Questions**: Up to 10 Yes/No questions can be asked
-- **Hints**: 3 different types of hints available (one per type)
-- **Language Support**: Accept answers in both Japanese and English
-- **Session Duration**: 30 minutes timeout for inactive sessions
+### 2.1 基本ゲームルール
+- **目的**: 国旗を見てその国名を特定する
+- **回答試行**: 最大2回まで不正解可能
+- **質問**: Yes/No形式で最大10回質問可能
+- **ヒント**: 3種類のヒントが利用可能（各種類1回ずつ）
+- **言語サポート**: 日本語・英語両方での回答受付
+- **セッション持続時間**: 非アクティブ時30分でタイムアウト
 
-### 2.2 Game Flow
-1. **Game Initialization**: System randomly selects a country and displays its flag
-2. **Information Gathering Phase**: 
-   - Player can ask Yes/No questions (up to 10)
-   - Player can request hints (up to 3 different types)
-3. **Answer Submission**: Player submits country name guess
-4. **Result Evaluation**: System validates answer and provides feedback
-5. **Game Conclusion**: Game ends on correct answer or exhausted attempts
+### 2.2 ゲームフロー
+1. **ゲーム初期化**: システムがランダムに国を選択し国旗を表示
+2. **情報収集フェーズ**: 
+   - プレイヤーはYes/No質問を最大10回可能
+   - プレイヤーは最大3種類のヒントを要求可能
+3. **回答提出**: プレイヤーが国名予想を提出
+4. **結果評価**: システムが回答を検証しフィードバック提供
+5. **ゲーム終了**: 正解時または試行回数終了時にゲーム終了
 
-### 2.3 Hint System
-- **主食 (Staple Food)**: Information about the country's main dietary staples
-- **面積 (Area)**: Comparison of country's area relative to Japan
-- **言語 (Language)**: Information about official languages spoken
-- Each hint type can only be used once per game session
-- Country name must not be revealed in hint responses
+### 2.3 ヒントシステム
+- **主食**: その国の主要な食材について
+- **面積**: 日本との面積比較
+- **言語**: 公用語に関する情報
+- 各ヒント種類はゲームセッション中1回のみ使用可能
+- ヒント回答では国名が明かされてはならない
 
-## 3. Technical Architecture
+## 3. 技術アーキテクチャ
 
-### 3.1 Technology Stack
-- **Backend Framework**: Spring Boot 3.2.0
-- **Java Version**: Java 17
-- **Template Engine**: Thymeleaf
-- **HTTP Client**: OkHttp 4.12.0
-- **Build Tool**: Maven
-- **AI Integration**: Google Gemini 2.0 Flash Experimental API
-- **Configuration Management**: dotenv-java 3.0.0
-- **Session Management**: Spring Session (in-memory)
+### 3.1 技術スタック
+- **バックエンドフレームワーク**: Spring Boot 3.2.0
+- **Java バージョン**: Java 17
+- **テンプレートエンジン**: Thymeleaf
+- **HTTPクライアント**: OkHttp 4.12.0
+- **ビルドツール**: Maven
+- **AI統合**: Google Gemini 2.0 Flash Experimental API
+- **設定管理**: dotenv-java 3.0.0
+- **セッション管理**: Spring Session (インメモリ)
 
-### 3.2 Application Architecture
+### 3.2 アプリケーションアーキテクチャ
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Presentation  │    │    Business     │    │   External      │
-│     Layer       │    │     Layer       │    │   Services      │
+│   プレゼン       │    │    ビジネス     │    │   外部          │
+│   テーション層   │    │    ロジック層   │    │   サービス      │
 ├─────────────────┤    ├─────────────────┤    ├─────────────────┤
 │ GameController  │ -> │ GameService     │ -> │ GeminiService   │
 │ ErrorController │    │                 │    │                 │
@@ -70,67 +70,67 @@ The Flag Quiz Game is an interactive web-based application built with Java Sprin
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
-### 3.3 Package Structure
+### 3.3 パッケージ構造
 ```
 com.example.flagquiz/
-├── FlagQuizApplication.java        # Main application entry point
+├── FlagQuizApplication.java        # メインアプリケーションエントリーポイント
 ├── controller/
-│   ├── GameController.java         # Game logic endpoints
-│   └── CustomErrorController.java  # Error handling
+│   ├── GameController.java         # ゲームロジックエンドポイント
+│   └── CustomErrorController.java  # エラーハンドリング
 ├── service/
-│   ├── GameService.java           # Game business logic
-│   └── GeminiService.java         # AI API integration
+│   ├── GameService.java           # ゲームビジネスロジック
+│   └── GeminiService.java         # AI API統合
 ├── model/
-│   └── GameState.java             # Game state data model
+│   └── GameState.java             # ゲーム状態データモデル
 └── config/
-    └── DotEnvConfig.java          # Environment configuration
+    └── DotEnvConfig.java          # 環境設定
 ```
 
-## 4. API Specifications
+## 4. API仕様
 
-### 4.1 Web Endpoints
+### 4.1 Webエンドポイント
 
-#### 4.1.1 Game Interface
-- **GET /** - Main game interface
-  - Returns: Game page with current state
-  - Template: `index.html`
-  - Session: Retrieves `gameState` if exists
+#### 4.1.1 ゲームインターフェース
+- **GET /** - メインゲームインターフェース
+  - 戻り値: 現在の状態を持つゲームページ
+  - テンプレート: `index.html`
+  - セッション: 存在する場合は`gameState`を取得
 
-#### 4.1.2 Game Actions
-- **POST /new_game** - Initialize new game session
-  - Action: Creates new GameState, selects random country
-  - Redirect: Back to main page with success message
-  - Error Handling: Shows error message on failure
+#### 4.1.2 ゲームアクション
+- **POST /new_game** - 新しいゲームセッション初期化
+  - アクション: 新しいGameState作成、ランダム国選択
+  - リダイレクト: 成功メッセージ付きでメインページに戻る
+  - エラーハンドリング: 失敗時はエラーメッセージ表示
 
-- **POST /ask_question** - Submit Yes/No question
-  - Parameters: `question` (String)
-  - Validation: Question format and remaining attempts
-  - Response: AI-generated Yes/No answer
-  - Side Effects: Decrements question count, logs interaction
+- **POST /ask_question** - Yes/No質問提出
+  - パラメータ: `question` (文字列)
+  - 検証: 質問形式と残り試行回数
+  - 応答: AI生成のYes/No回答
+  - 副作用: 質問回数減算、やり取りログ記録
 
-- **POST /get_hint** - Request hint
-  - Parameters: `hintType` (String: "主食", "面積", "言語")
-  - Validation: Hint availability and type validity
-  - Response: AI-generated hint without country name
-  - Side Effects: Marks hint as used, decrements hint count
+- **POST /get_hint** - ヒント要求
+  - パラメータ: `hintType` (文字列: "主食", "面積", "言語")
+  - 検証: ヒント利用可能性と種類の妥当性
+  - 応答: 国名を含まないAI生成ヒント
+  - 副作用: ヒントを使用済みとしてマーク、ヒント回数減算
 
-- **POST /submit_answer** - Submit country guess
-  - Parameters: `answer` (String)
-  - Validation: Answer format and remaining attempts
-  - Response: Correct/incorrect feedback with remaining attempts
-  - Side Effects: Decrements answer count on incorrect guess
+- **POST /submit_answer** - 国名予想提出
+  - パラメータ: `answer` (文字列)
+  - 検証: 回答形式と残り試行回数
+  - 応答: 正解/不正解フィードバックと残り試行回数
+  - 副作用: 不正解時に回答回数減算
 
-### 4.2 Gemini API Integration
+### 4.2 Gemini API統合
 
-#### 4.2.1 API Configuration
-- **Base URL**: `https://generativelanguage.googleapis.com/v1beta/models/`
-- **Model**: `gemini-2.0-flash-exp`
-- **Authentication**: API Key via query parameter
-- **Content Type**: `application/json`
+#### 4.2.1 API設定
+- **ベースURL**: `https://generativelanguage.googleapis.com/v1beta/models/`
+- **モデル**: `gemini-2.0-flash-exp`
+- **認証**: クエリパラメータ経由のAPIキー
+- **コンテンツタイプ**: `application/json`
 
-#### 4.2.2 API Methods
+#### 4.2.2 APIメソッド
 
-##### Country Generation
+##### 国生成
 ```json
 {
   "contents": [{
@@ -141,18 +141,7 @@ com.example.flagquiz/
 }
 ```
 
-##### Question Validation
-```json
-{
-  "contents": [{
-    "parts": [{
-      "text": "質問: \"[USER_QUESTION]\"\n対象国: [COUNTRY]\n\nこの質問が以下の条件を満たしているかYes/Noで回答してください：\n1. Yes/No形式で回答できる質問である\n2. 答えに直結しない質問である"
-    }]
-  }]
-}
-```
-
-##### Question Answering
+##### 質問回答
 ```json
 {
   "contents": [{
@@ -163,7 +152,7 @@ com.example.flagquiz/
 }
 ```
 
-##### Hint Generation
+##### ヒント生成
 ```json
 {
   "contents": [{
@@ -174,7 +163,7 @@ com.example.flagquiz/
 }
 ```
 
-##### Answer Validation
+##### 回答検証
 ```json
 {
   "contents": [{
@@ -185,81 +174,81 @@ com.example.flagquiz/
 }
 ```
 
-## 5. Data Models
+## 5. データモデル
 
-### 5.1 GameState Model
+### 5.1 GameStateモデル
 ```java
 public class GameState {
-    private String currentCountryEnglish;     // Country name in English
-    private String currentCountryJapanese;    // Country name in Japanese
-    private String countryFlag;               // Flag image URL
-    private int answersLeft = 2;              // Remaining answer attempts
-    private int questionsLeft = 10;           // Remaining questions
-    private int hintsLeft = 3;                // Remaining hints
-    private List<String> hintsUsed;           // Used hint types
-    private List<String> gameLog;             // Question-answer history
-    // ... getters and setters
+    private String currentCountryEnglish;     // 英語での国名
+    private String currentCountryJapanese;    // 日本語での国名
+    private String countryFlag;               // 国旗画像URL
+    private int answersLeft = 2;              // 残り回答試行回数
+    private int questionsLeft = 10;           // 残り質問回数
+    private int hintsLeft = 3;                // 残りヒント回数
+    private List<String> hintsUsed;           // 使用済みヒント種類
+    private List<String> gameLog;             // 質問-回答履歴
+    // ... ゲッター・セッター
 }
 ```
 
-### 5.2 Session Management
-- **Storage**: HTTP Session (in-memory)
-- **Key**: `gameState`
-- **Timeout**: 30 minutes
-- **Scope**: Single browser session
+### 5.2 セッション管理
+- **ストレージ**: HTTPセッション（インメモリ）
+- **キー**: `gameState`
+- **タイムアウト**: 30分
+- **スコープ**: 単一ブラウザセッション
 
-## 6. External Service Dependencies
+## 6. 外部サービス依存関係
 
 ### 6.1 Google Gemini API
-- **Purpose**: AI-powered game logic
-- **Authentication**: API Key
-- **Rate Limits**: As per Google's terms
-- **Fallback**: Basic hardcoded responses when API unavailable
-- **Error Handling**: Graceful degradation with fallback responses
+- **目的**: AI駆動のゲームロジック
+- **認証**: APIキー
+- **レート制限**: Googleの利用規約に従う
+- **フォールバック**: API利用不可時の基本的なハードコード回答
+- **エラーハンドリング**: フォールバック回答による優雅な劣化
 
-### 6.2 Flag Image Service
-- **Provider**: flagcdn.com
-- **Format**: PNG images
-- **Resolution**: 640px width (w640)
-- **URL Pattern**: `https://flagcdn.com/w640/[country-code].png`
-- **Availability**: Public CDN, no authentication required
+### 6.2 国旗画像サービス
+- **提供者**: flagcdn.com
+- **形式**: PNG画像
+- **解像度**: 640px幅 (w640)
+- **URLパターン**: `https://flagcdn.com/w640/[country-code].png`
+- **利用可能性**: パブリックCDN、認証不要
 
-## 7. Configuration Requirements
+## 7. 設定要件
 
-### 7.1 Environment Variables
+### 7.1 環境変数
 ```bash
-# Required
+# 必須
 GEMINI_API_KEY=your-actual-gemini-api-key-here
 
-# Optional (with defaults)
+# オプション（デフォルト値あり）
 GEMINI_MODEL=gemini-2.0-flash-exp
 SERVER_PORT=8080
 ```
 
-### 7.2 Application Properties
+### 7.2 アプリケーションプロパティ
 ```properties
-# Application
+# アプリケーション
 spring.application.name=flag-quiz-jv
 server.port=8080
 
-# Session Management
+# セッション管理
 server.servlet.session.timeout=30m
 server.servlet.session.cookie.max-age=1800
 
-# Thymeleaf Template Engine
+# Thymeleafテンプレートエンジン
 spring.thymeleaf.cache=false
 spring.thymeleaf.mode=HTML
 spring.thymeleaf.encoding=UTF-8
 
-# Character Encoding
+# 文字エンコーディング
 server.servlet.encoding.charset=UTF-8
 server.servlet.encoding.enabled=true
 server.servlet.encoding.force=true
 
-# Logging
+# ログ
 logging.level.com.example.flagquiz=DEBUG
 
-# Error Handling
+# エラーハンドリング
 server.error.include-message=always
 server.error.include-binding-errors=always
 server.error.include-stacktrace=always
@@ -269,212 +258,207 @@ gemini.api.key=${GEMINI_API_KEY}
 gemini.model=gemini-2.0-flash-exp
 ```
 
-## 8. User Interface Requirements
+## 8. ユーザーインターフェース要件
 
-### 8.1 Layout Structure
-- **Responsive Design**: Mobile and desktop compatible
-- **Two-Column Layout**: 
-  - Left: Flag display, game status, hints
-  - Right: Questions, answers, interaction forms
-- **Color Scheme**: Modern, accessible color palette
-- **Typography**: Clear, readable fonts with proper contrast
+### 8.1 レイアウト構造
+- **レスポンシブデザイン**: モバイル・デスクトップ対応
+- **2カラムレイアウト**: 
+  - 左: 国旗表示、ゲーム状態、ヒント
+  - 右: 質問、回答、インタラクションフォーム
+- **配色**: モダンでアクセシブルなカラーパレット
+- **タイポグラフィ**: 適切なコントラストを持つ明瞭で読みやすいフォント
 
-### 8.2 UI Components
+### 8.2 UIコンポーネント
 
-#### 8.2.1 Game Status Panel
-- Display remaining attempts (answers, questions, hints)
-- Visual progress indicators
-- Clear status messages and feedback
+#### 8.2.1 ゲーム状態パネル
+- 残り試行回数表示（回答、質問、ヒント）
+- 視覚的な進行状況インジケーター
+- 明確な状態メッセージとフィードバック
 
-#### 8.2.2 Flag Display
-- Large, clear flag image
-- Responsive sizing
-- Alt text for accessibility
+#### 8.2.2 国旗表示
+- 大きく明瞭な国旗画像
+- レスポンシブサイジング
+- アクセシビリティ用alt テキスト
 
-#### 8.2.3 Interaction Forms
-- Question input with placeholder text
-- Hint request buttons with disable states
-- Answer submission form
-- Form validation and error display
+#### 8.2.3 インタラクションフォーム
+- プレースホルダーテキスト付き質問入力
+- 無効化状態を持つヒント要求ボタン
+- 回答提出フォーム
+- フォーム検証とエラー表示
 
-#### 8.2.4 Message System
-- Success messages (green)
-- Error messages (red)
-- Info messages (blue)
-- Temporary flash messages
+#### 8.2.4 メッセージシステム
+- 成功メッセージ（緑）
+- エラーメッセージ（赤）
+- 情報メッセージ（青）
+- 一時的なフラッシュメッセージ
 
-### 8.3 User Experience Flow
-1. **Landing**: Clear "Start New Game" button
-2. **Game Active**: All controls accessible, status visible
-3. **Feedback**: Immediate response to all actions
-4. **Game End**: Clear success/failure indication
-5. **Reset**: Easy restart functionality
+### 8.3 ユーザーエクスペリエンスフロー
+1. **ランディング**: 明確な「新しいゲームを開始」ボタン
+2. **ゲーム中**: すべてのコントロールにアクセス可能、状態表示
+3. **フィードバック**: すべてのアクションに対する即座の応答
+4. **ゲーム終了**: 明確な成功/失敗表示
+5. **リセット**: 簡単な再開機能
 
-## 9. Security Requirements
+## 9. セキュリティ要件
 
-### 9.1 Input Validation
-- **Question Text**: Non-empty, reasonable length limits
-- **Answer Text**: Non-empty, trimmed whitespace
-- **Hint Type**: Validated against allowed values
-- **XSS Prevention**: Thymeleaf auto-escaping enabled
+### 9.1 入力検証
+- **質問テキスト**: 非空、適切な長さ制限
+- **回答テキスト**: 非空、空白文字トリミング
+- **ヒント種類**: 許可された値との照合検証
+- **XSS防止**: Thymeleafの自動エスケープ有効
 
-### 9.2 API Security
-- **API Keys**: Stored in environment variables
-- **Request Validation**: All Gemini API requests validated
-- **Error Handling**: No sensitive information in error messages
-- **Rate Limiting**: Respect API provider limits
+### 9.2 APIセキュリティ
+- **APIキー**: 環境変数での保存
+- **リクエスト検証**: すべてのGemini APIリクエストの検証
+- **エラーハンドリング**: エラーメッセージでの機密情報非開示
+- **レート制限**: APIプロバイダーの制限尊重
 
-### 9.3 Session Security
-- **Session Timeout**: 30-minute inactivity timeout
-- **Session Isolation**: Game state per session
-- **No Persistent Storage**: Game data not stored permanently
+### 9.3 セッションセキュリティ
+- **セッションタイムアウト**: 30分の非アクティブタイムアウト
+- **セッション分離**: セッション毎のゲーム状態
+- **永続ストレージなし**: ゲームデータの永続的保存なし
 
-## 10. Performance Requirements
+## 10. パフォーマンス要件
 
-### 10.1 Response Times
-- **Page Load**: < 2 seconds initial load
-- **Game Actions**: < 5 seconds for API-dependent actions
-- **Static Content**: < 500ms for cached resources
+### 10.1 応答時間
+- **ページロード**: 初期ロード2秒未満
+- **ゲームアクション**: API依存アクション5秒未満
+- **静的コンテンツ**: キャッシュされたリソース500ms未満
 
-### 10.2 Scalability
-- **Concurrent Users**: Support for moderate concurrent usage
-- **Memory Usage**: Efficient session management
-- **API Efficiency**: Minimize unnecessary API calls
+### 10.2 スケーラビリティ
+- **同時ユーザー**: 適度な同時利用サポート
+- **メモリ使用**: 効率的なセッション管理
+- **API効率**: 不要なAPI呼び出しの最小化
 
-### 10.3 Reliability
-- **Uptime**: 99% availability during operation hours
-- **Error Recovery**: Graceful handling of API failures
-- **Fallback Mechanisms**: Basic functionality without API
+### 10.3 信頼性
+- **稼働時間**: 運用時間中99%の可用性
+- **エラー回復**: APIエラーの優雅な処理
+- **フォールバック機能**: APIなしでの基本機能
 
-## 11. Testing Requirements
+## 11. テスト要件
 
-### 11.1 Unit Testing
-- **Service Layer**: GameService and GeminiService methods
-- **Model Validation**: GameState data integrity
-- **Utility Functions**: Parsing and validation logic
+### 11.1 単体テスト
+- **サービス層**: GameServiceとGeminiServiceメソッド
+- **モデル検証**: GameStateデータ整合性
+- **ユーティリティ機能**: 解析と検証ロジック
 
-### 11.2 Integration Testing
-- **Controller Endpoints**: All HTTP endpoints
-- **Session Management**: Game state persistence
-- **Template Rendering**: Thymeleaf template processing
+### 11.2 統合テスト
+- **コントローラーエンドポイント**: すべてのHTTPエンドポイント
+- **セッション管理**: ゲーム状態の永続化
+- **テンプレートレンダリング**: Thymeleafテンプレート処理
 
-### 11.3 System Testing
-- **Complete Game Flow**: Full game scenarios
-- **Error Scenarios**: API failures, invalid inputs
-- **Browser Compatibility**: Major browsers support
+### 11.3 システムテスト
+- **完全ゲームフロー**: フルゲームシナリオ
+- **エラーシナリオ**: API失敗、無効入力
+- **ブラウザ互換性**: 主要ブラウザサポート
 
-## 12. Deployment Requirements
+## 12. デプロイ要件
 
-### 12.1 Runtime Environment
-- **Java Runtime**: Java 17 or higher
-- **Application Server**: Embedded Tomcat (Spring Boot)
-- **Operating System**: Cross-platform (Windows, Linux, macOS)
-- **Memory**: Minimum 512MB RAM
+### 12.1 実行環境
+- **Java ランタイム**: Java 17以上
+- **アプリケーションサーバー**: 組み込みTomcat（Spring Boot）
+- **オペレーティングシステム**: クロスプラットフォーム（Windows、Linux、macOS）
+- **メモリ**: 最小512MB RAM
 
-### 12.2 Build Requirements
-- **Build Tool**: Apache Maven 3.6+
-- **Dependencies**: All specified in pom.xml
-- **Build Command**: `mvn clean package`
-- **Run Command**: `mvn spring-boot:run` or `java -jar target/flag-quiz-jv-0.0.1-SNAPSHOT.jar`
+### 12.2 ビルド要件
+- **ビルドツール**: Apache Maven 3.6+
+- **依存関係**: pom.xmlで指定されたすべて
+- **ビルドコマンド**: `mvn clean package`
+- **実行コマンド**: `mvn spring-boot:run` または `java -jar target/flag-quiz-jv-0.0.1-SNAPSHOT.jar`
 
-### 12.3 Environment Setup
+### 12.3 環境セットアップ
 ```bash
-# 1. Clone/extract project
-# 2. Set environment variables
+# 1. プロジェクトのクローン/展開
+# 2. 環境変数の設定
 echo "GEMINI_API_KEY=your-key-here" > .env
 
-# 3. Build and run
+# 3. ビルドと実行
 mvn clean package
 mvn spring-boot:run
 
-# 4. Access application
+# 4. アプリケーションへのアクセス
 # http://localhost:8080
 ```
 
-### 12.4 Production Considerations
-- **Logging**: Configure appropriate log levels
-- **Monitoring**: Health check endpoints
-- **Configuration**: Externalized configuration files
-- **Security**: HTTPS in production environment
+### 12.4 本番環境での考慮事項
+- **ログ**: 適切なログレベルの設定
+- **監視**: ヘルスチェックエンドポイント
+- **設定**: 外部化された設定ファイル
+- **セキュリティ**: 本番環境でのHTTPS
 
-## 13. Maintenance and Support
+## 13. メンテナンスとサポート
 
-### 13.1 Code Maintenance
-- **Code Style**: Follow Java naming conventions
-- **Documentation**: Javadoc for all public methods
-- **Version Control**: Git with meaningful commit messages
-- **Dependencies**: Regular security updates
+### 13.1 コードメンテナンス
+- **コードスタイル**: Java命名規則に従う
+- **ドキュメント**: すべてのpublicメソッドにJavadoc
+- **バージョン管理**: 意味のあるコミットメッセージを持つGit
+- **依存関係**: 定期的なセキュリティアップデート
 
-### 13.2 Operational Support
-- **Log Monitoring**: Error and access logs
-- **API Monitoring**: Gemini API usage and limits
-- **Performance Monitoring**: Response times and errors
-- **User Feedback**: Collection and analysis
+### 13.2 運用サポート
+- **ログ監視**: エラーログとアクセスログ
+- **API監視**: Gemini API使用量と制限
+- **パフォーマンス監視**: 応答時間とエラー
+- **ユーザーフィードバック**: 収集と分析
 
-### 13.3 Future Enhancements
-- **Database Integration**: Persistent game history
-- **User Authentication**: Personal game statistics
-- **Multiplayer Mode**: Competitive gameplay
-- **Additional Languages**: Multi-language support
-- **Mobile App**: Native mobile applications
+### 13.3 将来の機能拡張
+- **データベース統合**: 永続的なゲーム履歴
+- **ユーザー認証**: 個人ゲーム統計
+- **マルチプレイヤーモード**: 競争的ゲームプレイ
+- **追加言語**: 多言語サポート
+- **モバイルアプリ**: ネイティブモバイルアプリケーション
 
-## 14. Quality Assurance
+## 14. 品質保証
 
-### 14.1 Code Quality
-- **Static Analysis**: Use tools like SonarQube
-- **Code Coverage**: Minimum 80% test coverage
-- **Code Review**: Peer review for all changes
-- **Style Guide**: Consistent coding standards
+### 14.1 コード品質
+- **静的解析**: SonarQubeなどのツール使用
+- **コードカバレッジ**: 最低80%のテストカバレッジ
+- **コードレビュー**: すべての変更に対するピアレビュー
+- **スタイルガイド**: 一貫したコーディング標準
 
-### 14.2 User Experience Quality
-- **Accessibility**: WCAG 2.1 AA compliance
-- **Usability Testing**: Regular user feedback
-- **Performance Testing**: Load and stress testing
-- **Cross-browser Testing**: Major browsers compatibility
+### 14.2 ユーザーエクスペリエンス品質
+- **アクセシビリティ**: WCAG 2.1 AA準拠
+- **ユーザビリティテスト**: 定期的なユーザーフィードバック
+- **パフォーマンステスト**: 負荷・ストレステスト
+- **クロスブラウザテスト**: 主要ブラウザ互換性
 
-### 14.3 Documentation Quality
-- **API Documentation**: Complete endpoint documentation
-- **User Guide**: Clear usage instructions
-- **Developer Guide**: Setup and development instructions
-- **Troubleshooting**: Common issues and solutions
+### 14.3 ドキュメント品質
+- **API ドキュメント**: 完全なエンドポイントドキュメント
+- **ユーザーガイド**: 明確な利用説明
+- **開発者ガイド**: セットアップと開発手順
+- **トラブルシューティング**: よくある問題と解決方法
 
 ---
 
-## Appendix A: API Response Examples
+## 付録A: APIレスポンス例
 
-### A.1 Gemini Country Generation Response
+### A.1 Gemini国生成レスポンス
 ```
 国名（英語）: France
 国名（日本語）: フランス
 国旗URL: https://flagcdn.com/w640/fr.png
 ```
 
-### A.2 Gemini Question Validation Response
-```
-Yes
-```
-
-### A.3 Gemini Question Answer Response
+### A.2 Gemini質問回答レスポンス
 ```
 No
 ```
 
-### A.4 Gemini Hint Response
+### A.3 Geminiヒントレスポンス
 ```
 主食として小麦が多く使われ、パンやパスタが食卓の中心となっています。チーズとワインも食文化の重要な部分を占めています。
 ```
 
-## Appendix B: Error Handling Matrix
+## 付録B: エラーハンドリングマトリックス
 
-| Error Type | User Message | System Action | Recovery |
+| エラー種類 | ユーザーメッセージ | システムアクション | 回復方法 |
 |------------|--------------|---------------|----------|
-| API Failure | "サービスが一時的に利用できません" | Use fallback responses | Retry on next request |
-| Invalid Question | "質問はYes/No形式で答えられる内容にしてください" | Show error message | Allow new question |
-| No Questions Left | "質問回数が残っていません" | Disable question form | Game continues |
-| No Hints Left | "ヒントは3回まで使用できます" | Disable hint buttons | Game continues |
-| No Answers Left | "回答回数が残っていません" | Show game over | Offer new game |
-| Session Timeout | "セッションが切れました" | Clear game state | Redirect to start |
+| API失敗 | "サービスが一時的に利用できません" | フォールバック回答使用 | 次回リクエスト時に再試行 |
+| 無効な質問 | "質問はYes/No形式で答えられる内容にしてください" | エラーメッセージ表示 | 新しい質問を許可 |
+| 質問回数終了 | "質問回数が残っていません" | 質問フォーム無効化 | ゲーム継続 |
+| ヒント回数終了 | "ヒントは3回まで使用できます" | ヒントボタン無効化 | ゲーム継続 |
+| 回答回数終了 | "回答回数が残っていません" | ゲームオーバー表示 | 新しいゲーム提案 |
+| セッションタイムアウト | "セッションが切れました" | ゲーム状態クリア | スタート画面にリダイレクト |
 
 ---
 
-*This requirements document serves as the comprehensive specification for the Flag Quiz Game Java Spring Boot application. It should be updated as the project evolves and new requirements are identified.*
+*この要件定義書は、国旗クイズゲーム Java Spring Bootアプリケーション用の包括的な仕様として機能します。プロジェクトの発展と新しい要件の特定により更新されるべきです。*
