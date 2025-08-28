@@ -5,79 +5,26 @@
 [![Gemini](https://img.shields.io/badge/Gemini-2.0%20Flash-purple.svg)](https://ai.google.dev/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+## 📖 プロジェクト概要
+
 Spring Boot と Gemini API を使用した国旗クイズWebアプリケーションです。国旗を見て国名を当てるインタラクティブなゲームを楽しめます。
 
-## ✨ 特徴
+**🎯 ポートフォリオとして公開しているプロジェクトです**
 
-- 🌍 **Spring Boot** によるエンタープライズレベルの構成
+## ✨ 主な特徴
+
+- 🌍 **Spring Boot 3.2+** によるエンタープライズレベルの構成
 - 🤖 **Gemini AI** による質問回答システム
 - 💡 **3種類のヒント** （主食・面積・言語）
 - 🎨 **モダンデザイン** （レスポンシブ対応）
 - ⚡ **高性能** （Java 17+ 最適化）
-- 🔧 **設定可能** （application.properties）
+- 🚀 **Renderでの本番デプロイ済み**
 
-## 🚀 クイックスタート
+## 🌐 ライブデモ
 
-### 必要環境
-- Java 17以上
-- Maven 3.8以上
-- Gemini API キー
+**🔗 デモURL**: [https://flag-quiz-java.onrender.com](https://flag-quiz-java.onrender.com)
 
-### 1. リポジトリをクローン
-```bash
-git clone https://github.com/yourusername/flag-quiz-java.git
-cd flag-quiz-java
-```
-
-### 2. Gemini API キーの設定
-`.env` ファイルにあなたのGemini API キーを設定してください：
-
-```bash
-# .env ファイルを作成・編集
-GEMINI_API_KEY=your-actual-gemini-api-key-here
-```
-
-### 3. アプリケーションの実行
-```bash
-# Maven でアプリケーションを実行
-mvn spring-boot:run
-```
-
-### 4. ブラウザでアクセス
-```
-http://localhost:8080
-```
-
-## 🌐 デプロイ
-
-### Renderデプロイ
-
-1. **Renderアカウント作成**: [render.com](https://render.com)でアカウント作成
-
-2. **新しいWebサービス作成**:
-   - "New" → "Web Service"
-   - GitHubリポジトリを接続
-   - 以下の設定を入力：
-
-3. **Render設定**:
-   ```
-   Name: flag-quiz-java
-   Environment: Docker
-   Dockerfile Path: ./Dockerfile
-   ```
-
-4. **環境変数設定**:
-   ```
-   GEMINI_API_KEY = your-gemini-api-key-here
-   SPRING_PROFILES_ACTIVE = production
-   ```
-
-5. **デプロイ実行**: "Create Web Service"をクリック
-
-### ライブデモ
-- 🔗 **デモURL**: https://flag-quiz-java.onrender.com *(デプロイ後に更新)*
-
-```
+実際に動作するアプリケーションをお試しください！
 
 ## 🎮 ゲームルール
 
@@ -110,7 +57,9 @@ http://localhost:8080
 - **CSS3** - スタイリング
 - **JavaScript** - インタラクション
 
-### API・データ
+### インフラ・デプロイ
+- **Render** - クラウドホスティング
+- **Docker** - コンテナ化
 - **Gemini API** - AI機能
 - **flagcdn.com** - 国旗画像データ
 
@@ -140,44 +89,46 @@ flag-quiz-java/
 │           │   ├── style.css               # スタイルシート
 │           │   └── script.js               # JavaScript
 │           └── application.properties      # Spring Boot設定
-├── .env                                    # 環境変数（要作成）
+├── Dockerfile                             # Docker設定
+├── render.yaml                            # Render設定
 ├── pom.xml                                # Maven設定
 ├── README.md                              # このファイル
-├── LICENSE                                # ライセンス
-└── .gitignore                             # Git除外設定
+└── LICENSE                                # ライセンス
 ```
 
-## 🎯 使用方法
+## 🚀 ローカル開発環境での実行
 
-### 1. ゲーム開始
-- ホームページで「新しいゲームを開始」をクリック
-- ランダムに選択された国の国旗が表示される
+### 必要環境
+- Java 17以上
+- Maven 3.8以上
+- Gemini API キー
 
-### 2. 情報収集
-- **質問**: AIに「はい/いいえ」で答えられる質問を投げかけ
-- **ヒント**: 3種類のヒントボタンから情報を取得
+### セットアップ手順
 
-### 3. 回答
-- 国名を日本語で入力（例：「日本」「アメリカ」）
-- 2回まで回答可能
-
-### 4. 結果
-- 正解時：おめでとうメッセージ
-- 不正解時：正解の表示とゲーム終了
-
-## 🔧 カスタマイズ
-
-### application.properties 設定
-```properties
-# サーバーポート変更
-server.port=8080
-
-# ログレベル設定
-logging.level.com.example.flagquiz=DEBUG
+1. **リポジトリをクローン**
+```bash
+git clone https://github.com/yourusername/flag-quiz-java.git
+cd flag-quiz-java
 ```
 
-### デザイン変更
-`src/main/resources/static/style.css` を編集してデザインをカスタマイズできます。
+2. **Gemini API キーの設定**
+`.env` ファイルにあなたのGemini API キーを設定してください：
+
+```bash
+# .env ファイルを作成・編集
+GEMINI_API_KEY=your-actual-gemini-api-key-here
+```
+
+3. **アプリケーションの実行**
+```bash
+# Maven でアプリケーションを実行
+mvn spring-boot:run
+```
+
+4. **ブラウザでアクセス**
+```
+http://localhost:8080
+```
 
 ## 📝 ライセンス
 
@@ -188,6 +139,7 @@ logging.level.com.example.flagquiz=DEBUG
 - [Google Gemini AI](https://ai.google.dev/) - AI機能
 - [flagcdn.com](https://flagcdn.com/) - 国旗画像データ
 - [Spring Boot](https://spring.io/projects/spring-boot) - Webフレームワーク
+- [Render](https://render.com/) - クラウドホスティング
 
 ## 📞 お問い合わせ
 
